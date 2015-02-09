@@ -14,4 +14,6 @@
 
 - (void) loginWithCompletion: (void(^)(User* user, NSError* error)) completion;
 -(void) openUrl: (NSURL*) url;
+
+-(void) homeTimelineWithParam: (NSDictionary*) params completion: (void (^) (NSArray* tweets, NSError* error)) completion;
 @end

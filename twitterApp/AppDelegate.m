@@ -12,6 +12,7 @@
 #import <BDBOAuth1SessionManager.h>
 #import "User.h"
 #import "Tweet.h"
+#import "TweetsViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,10 +24,26 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[LogginViewController alloc]init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:userDidLogoutNotification object:nil];
+    
+    User* user = [User currentUser];
+    if(user != nil){
+        NSLog(@"Welcome %@", user.name);
+        self.window.rootViewController = [[TweetsViewController alloc]init];
+
+    }
+    else{
+        NSLog(@"Not logged in");
+        self.window.rootViewController = [[LogginViewController alloc]init];
+    }
     [self.window makeKeyAndVisible];
 
     return YES;
+}
+
+-(void) userDidLogout{
+    self.window.rootViewController = [[LogginViewController alloc]init];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
