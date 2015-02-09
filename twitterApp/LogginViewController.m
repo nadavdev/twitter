@@ -7,8 +7,10 @@
 //
 
 #import "LogginViewController.h"
+#import "TwitterClient.h"
 
 @interface LogginViewController ()
+- (IBAction)onLogin:(id)sender;
 
 @end
 
@@ -34,4 +36,16 @@
 }
 */
 
+- (IBAction)onLogin:(id)sender {
+    
+    [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
+        if (user != nil) {
+            //modally present tweet view
+            NSLog(@"welcome to %@", user.name);
+        }
+        else{
+            //present the error view to the user
+        }
+    }];
+}
 @end
