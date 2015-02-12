@@ -8,7 +8,8 @@
 
 #import "LogginViewController.h"
 #import "TwitterClient.h"
-#import "TweetsViewController.h"
+//#import "TweetsViewController.h"
+#import "TimelineViewController.h"
 
 @interface LogginViewController ()
 - (IBAction)onLogin:(id)sender;
@@ -43,7 +44,7 @@
         if (user != nil) {
             //modally present tweet view
             NSLog(@"welcome to %@", user.name);
-            [self presentViewController:[[TweetsViewController alloc]init] animated:YES completion:nil];
+            [self presentViewController:[[TimelineViewController alloc]init] animated:YES completion:nil];
         }
         else{
             //present the error view to the user

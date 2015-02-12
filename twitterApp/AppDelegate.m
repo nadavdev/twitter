@@ -12,7 +12,8 @@
 #import <BDBOAuth1SessionManager.h>
 #import "User.h"
 #import "Tweet.h"
-#import "TweetsViewController.h"
+//#import "TweetsViewController.h"
+#import "TimelineViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,7 +31,13 @@
     User* user = [User currentUser];
     if(user != nil){
         NSLog(@"Welcome %@", user.name);
-        self.window.rootViewController = [[TweetsViewController alloc]init];
+        TimelineViewController* vc = [[TimelineViewController alloc]init];
+        UINavigationController* nvc =[[UINavigationController alloc] initWithRootViewController:vc];
+        
+        nvc.navigationBar.translucent=NO;
+        self.window.rootViewController = nvc;
+
+        self.window.rootViewController = nvc;
 
     }
     else{

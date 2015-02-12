@@ -11,6 +11,9 @@
 
 @interface Tweet : NSObject
 
+//@property (nonatomic, strong) NSString* imageUrl;
+//@property (nonatomic, strong) NSString* name;
+//@property (nonatomic, strong) NSString* loginName;
 @property (nonatomic, strong) NSString* text;
 @property (nonatomic, strong) NSDate* createdAt;
 @property (nonatomic, strong) User* user;
