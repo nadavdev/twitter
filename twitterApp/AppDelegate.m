@@ -14,6 +14,7 @@
 #import "Tweet.h"
 //#import "TweetsViewController.h"
 #import "TimelineViewController.h"
+#import "MenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -28,22 +29,26 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:userDidLogoutNotification object:nil];
     
-    User* user = [User currentUser];
-    if(user != nil){
-        NSLog(@"Welcome %@", user.name);
-        TimelineViewController* vc = [[TimelineViewController alloc]init];
-        UINavigationController* nvc =[[UINavigationController alloc] initWithRootViewController:vc];
-        
-        nvc.navigationBar.translucent=NO;
-        self.window.rootViewController = nvc;
+    UIViewController *mvc = [[MenuViewController alloc] init];
+    self.window.rootViewController = mvc;
 
-        self.window.rootViewController = nvc;
-
-    }
-    else{
-        NSLog(@"Not logged in");
-        self.window.rootViewController = [[LogginViewController alloc]init];
-    }
+//    
+//    User* user = [User currentUser];
+//    if(user != nil){
+//        NSLog(@"Welcome %@", user.name);
+//        TimelineViewController* vc = [[TimelineViewController alloc]init];
+//        UINavigationController* nvc =[[UINavigationController alloc] initWithRootViewController:vc];
+//        
+//        nvc.navigationBar.translucent=NO;
+//        self.window.rootViewController = nvc;
+//
+//        self.window.rootViewController = nvc;
+//
+//    }
+//    else{
+//        NSLog(@"Not logged in");
+//        self.window.rootViewController = [[LogginViewController alloc]init];
+//    }
     [self.window makeKeyAndVisible];
 
     return YES;
